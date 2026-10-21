@@ -1,4 +1,4 @@
-<img src="docs/logo.svg" width="64" height="64" alt="">
+<img src="docs/logo.png" width="96" height="96" alt="Hukum logo">
 
 # Hukum
 
