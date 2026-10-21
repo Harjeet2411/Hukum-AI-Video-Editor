@@ -3,7 +3,7 @@
   "name": "hukum",
   "owner": { "name": "Harjeet (DeHaNa)", "url": "https://github.com/Harjeet2411" },
   "metadata": {
-    "description": "Hukum, the DeHaNa AI video editor (built on NextWork's open-source Hukum): measure how a short-form creator edits, then edit your own talking-head video in that style."
+    "description": "Hukum, the DeHaNa AI video editor (built on NextWork's open-source cooked.): measure how a short-form creator edits, then edit your own talking-head video in that style."
   },
   "plugins": [
     {

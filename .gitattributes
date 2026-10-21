@@ -1,0 +1,5 @@
+# Hukum: LF everywhere, so a Windows checkout passes the size checks in tests/check_plugins.py
+* text=auto eol=lf
+*.png binary
+*.jpg binary
+*.mp4 binary
