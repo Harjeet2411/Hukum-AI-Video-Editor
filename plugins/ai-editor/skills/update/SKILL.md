@@ -1,6 +1,6 @@
 ---
 name: update
-description: Updates cooked. to its newest version. Works out how it was installed and does the right thing for each. The official plugin from the marketplace gets the plugin update commands for ai-editor and creator-teardown. A fork the user owns (the power-user route, where they change the editor's own code) gets its new versions pulled from nextwork-projects/ai-video-editor-cooked and merged with their changes kept, after a backup branch, then the fast self-checks, with a rollback if they fail. A plain clone gets the fork route in three steps. Use when the user says "update the editor", "get the latest version", "sync my fork", "pull the new version", or asks how to stay up to date after changing the editor's code. Not for changing a style or a setting (that is taste or the home page), and not for maintainers turning feedback into fixes (that is improve).
+description: Updates Hukum to its newest version. Works out how it was installed and does the right thing for each. The official plugin from the marketplace gets the plugin update commands for ai-editor and creator-teardown. A fork the user owns (the power-user route, where they change the editor's own code) gets its new versions pulled from nextwork-projects/ai-video-editor-cooked and merged with their changes kept, after a backup branch, then the fast self-checks, with a rollback if they fail. A plain clone gets the fork route in three steps. Use when the user says "update the editor", "get the latest version", "sync my fork", "pull the new version", or asks how to stay up to date after changing the editor's code. Not for changing a style or a setting (that is taste or the home page), and not for maintainers turning feedback into fixes (that is improve).
 license: MIT
 compatibility: Python 3.9+, standard library only, and git. Fork updates run in the user's git checkout of their fork; the self-checks need bash (Git Bash on Windows).
 ---
@@ -23,8 +23,8 @@ work. Pushing to their fork happens only when they ask for it.
 python3 "$U" where
 ```
 
-- **marketplace**: run `python3 "$U" market`. It runs `claude plugin marketplace update nextwork`, then
-  `claude plugin update` for `ai-editor@nextwork` and `creator-teardown@nextwork` itself. Then tell them to type
+- **marketplace**: run `python3 "$U" market`. It runs `claude plugin marketplace update hukum`, then
+  `claude plugin update` for `ai-editor@hukum` and `creator-teardown@hukum` itself. Then tell them to type
   `/reload-plugins`. If it fails, say the lines it prints instead. Their styles, skills and settings live in
   their own folder and survive (docs/customise.md). Stop here.
 - **plain clone**: say the three fork steps it prints. Stop here.
@@ -67,7 +67,7 @@ python3 "$U" verify
 
 It runs `tests/check_plugins.py` and `tests/demos.sh`. Pass: tell them to type `/reload-plugins`
 (and, if they installed from their fork on GitHub, that pushing to it and
-`/plugin marketplace update nextwork` brings it there, when they want). Fail: show the failing
+`/plugin marketplace update hukum` brings it there, when they want). Fail: show the failing
 checks and ask **Fix them (Recommended)** / **Go back to before the update**. Going back:
 
 ```bash

@@ -1,4 +1,4 @@
 ---
 type: regex
-pattern: 'ai-editor@nextwork'
+pattern: 'ai-editor@hukum'
 ---

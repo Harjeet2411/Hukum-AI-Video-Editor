@@ -723,7 +723,7 @@ def workflow(zip_name):
 
 README = """# {name}: render on GitHub Actions
 
-Made by cooked. (`edit.py render --github`). Keep this repo private: the footage is in
+Made by Hukum (`edit.py render --github`). Keep this repo private: the footage is in
 it, as the `{zip}` asset of the `media` release.
 
 Actions > render > Run workflow renders `plan.json` with Remotion, about 2 minutes of video per

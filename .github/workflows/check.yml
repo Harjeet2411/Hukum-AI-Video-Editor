@@ -1,13 +1,11 @@
 name: check
 
-# Runs the self-checks on Mac, Linux and Windows every Monday, and on every push.
+# Runs the self-checks on Mac, Linux and Windows. Hukum: manual only (Actions tab, Run workflow), because
+# on a private repo the Mac and Windows runners use up the free Actions minutes fast.
 # The TikTok step can't fail the run: GitHub's servers are sometimes blocked by
 # TikTok. weekly.yml says when the pinned yt-dlp itself broke (RELEASING.md: refresh the lock).
 on:
-  push:
   workflow_dispatch:
-  schedule:
-    - cron: "0 9 * * 1"
 
 jobs:
   # Manifests, skill and agent frontmatter, the shared contracts copy. Linux only: nothing OS-specific.

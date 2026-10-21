@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Check and install everything cooked. needs. Stdlib only.
+"""Check and install everything Hukum needs. Stdlib only.
 
   python3 setup.py doctor     one line per tool: ok, or FIX with the exact command for this computer;
                               also FIX on drift from the pinned versions (env.json vs what is installed)
@@ -35,7 +35,7 @@ What got installed is recorded in ~/.ai-video-editor/env.json. AI_EDITOR_HOME mo
   python3 setup.py matte      download the person-matting model (15 MB) for cards behind the speaker
   python3 setup.py later <step>   save an optional step for later (gemini elevenlabs style modal matte)
   python3 setup.py todo       every optional step not done yet ("finish setup")
-  python3 setup.py install-launcher     put the `nextwork-editor` command on the PATH (a user folder, no sudo;
+  python3 setup.py install-launcher     put the `hukum` command on the PATH (a user folder, no sudo;
                               idempotent). It opens the editor's window with Claude Code behind it.
   python3 setup.py uninstall-launcher   take it off again (and the PATH line, if install added one)
   python3 setup.py demo       self-check
@@ -279,7 +279,7 @@ def step_motion(force=False, tick=None):
     MOTION_HOME.mkdir(parents=True, exist_ok=True)
     pkg = MOTION_HOME / "package.json"
     if not pkg.exists():
-        pkg.write_text('{"private": true, "description": "cooked. motion clip tools"}\n', encoding="utf-8")
+        pkg.write_text('{"private": true, "description": "Hukum motion clip tools"}\n', encoding="utf-8")
     done = "up to date"
     pins = motion_pins()
     if force or motion_have() != pins:
@@ -626,15 +626,15 @@ def doctor_quiet():
     missing = [name for name, _, _, cmd in rows if not cmd.endswith("repair")]
     drifted = [name for name, _, _, cmd in rows if cmd.endswith("repair")]
     if missing and not profile.path().exists():   # first run: the window opens before anything installs
-        print("First run of cooked. Open its window first (home.py serve and wait in the background), "
+        print("First run of Hukum. Open its window first (home.py serve and wait in the background), "
               "then install in the background with setup.py install-all --report (the setup skill's step 0).")
     elif missing:
-        print(f"cooked. is missing {', '.join(missing)}. Say \"set up the editor\" to install.")
+        print(f"Hukum is missing {', '.join(missing)}. Say \"set up the editor\" to install.")
     elif drifted:
-        print(f"cooked. found {', '.join(drifted)} moved off the pinned versions. "
+        print(f"Hukum found {', '.join(drifted)} moved off the pinned versions. "
               f"Run: {'py' if OS == 'Windows' else 'python3'} \"{Path(__file__).resolve()}\" repair")
     elif still_later():
-        print(f"cooked. saved for later: {', '.join(still_later())}. Say \"finish setup\" to add.")
+        print(f"Hukum saved for later: {', '.join(still_later())}. Say \"finish setup\" to add.")
     return 0   # never block the session
 
 
@@ -1173,7 +1173,7 @@ def bin_dirs(os_name=OS, path_env=None, home=None):
 
 
 def install_launcher(os_name=OS, path_env=None, home=None):
-    name = "nextwork-editor.cmd" if os_name == "Windows" else "nextwork-editor"
+    name = "hukum.cmd" if os_name == "Windows" else "hukum"
     ok, fallback = bin_dirs(os_name, path_env, home)
     d = ok[0] if ok else fallback
     rc = None
@@ -1192,7 +1192,7 @@ def install_launcher(os_name=OS, path_env=None, home=None):
         with open(f, "w", encoding="utf-8", newline="") as fh:
             fh.write(want)
         f.chmod(0o755)
-    print(f"ok   nextwork-editor   {'already installed' if old == want else 'installed'} at {f}"
+    print(f"ok   hukum   {'already installed' if old == want else 'installed'} at {f}"
           + (f"\n     open a new terminal first (the PATH line is in {rc})" if rc else ""))
     return 0
 
@@ -1202,7 +1202,7 @@ def uninstall_launcher(os_name=OS, path_env=None, home=None):
     ok, fallback = bin_dirs(os_name, path_env, home)
     gone = []
     for d in dict.fromkeys(ok + [fallback]):
-        for f in (d / "nextwork-editor", d / "nextwork-editor.cmd"):
+        for f in (d / "hukum", d / "hukum.cmd"):
             if f.is_file() and MARK in f.read_text(encoding="utf-8", errors="ignore"):
                 f.unlink()
                 gone.append(str(f))
@@ -1210,7 +1210,7 @@ def uninstall_launcher(os_name=OS, path_env=None, home=None):
         if rc.exists() and RC_LINE in rc.read_text(encoding="utf-8"):
             rc.write_text(rc.read_text(encoding="utf-8").replace(RC_LINE + "\n", "").replace(RC_LINE, ""), encoding="utf-8")
             gone.append(f"the PATH line in {rc}")
-    print("removed " + ", ".join(gone) if gone else "nextwork-editor was not installed")
+    print("removed " + ", ".join(gone) if gone else "hukum was not installed")
     return 0
 
 
@@ -1221,7 +1221,7 @@ def demo_launcher():
         b = t / "bin"
         b.mkdir()
         assert install_launcher("Linux", str(b), t) == 0
-        f = b / "nextwork-editor"
+        f = b / "hukum"
         assert MARK in f.read_text(encoding="utf-8") and str(LAUNCHER) in f.read_text(encoding="utf-8") and os.access(f, os.X_OK)
         before = f.stat().st_mtime_ns
         assert install_launcher("Linux", str(b), t) == 0 and f.stat().st_mtime_ns == before, "a second install changes nothing"
@@ -1239,7 +1239,7 @@ def demo_launcher():
         with open(moved, "w", encoding="utf-8", newline="") as fh:
             fh.write(real.read_text(encoding="utf-8").replace(str(LAUNCHER), str(t / "gone.py")))
         r = subprocess.run(run(moved), capture_output=True, text=True)
-        assert r.returncode == 1 and r.stdout.strip() == "cooked. moved, maybe an update. In Claude Code, say: set up the editor.", r.stdout
+        assert r.returncode == 1 and r.stdout.strip() == "Hukum moved, maybe an update. In Claude Code, say: set up the editor.", r.stdout
         moved.unlink()
         if win:
             real.unlink()
@@ -1255,9 +1255,9 @@ def demo_launcher():
         (t / ".zprofile").write_text("export A=1\n", encoding="utf-8")
         install_launcher("Darwin", "/usr/bin", t)
         install_launcher("Darwin", "/usr/bin", t)
-        assert (t / ".local/bin/nextwork-editor").exists() and (t / ".zprofile").read_text(encoding="utf-8").count(RC_LINE) == 1
+        assert (t / ".local/bin/hukum").exists() and (t / ".zprofile").read_text(encoding="utf-8").count(RC_LINE) == 1
         uninstall_launcher("Darwin", "/usr/bin", t)
-        assert not (t / ".local/bin/nextwork-editor").exists() and (t / ".zprofile").read_text(encoding="utf-8") == "export A=1\n"
+        assert not (t / ".local/bin/hukum").exists() and (t / ".zprofile").read_text(encoding="utf-8") == "export A=1\n"
         w = launcher_text("Windows", Path("C:/x/launcher.py"), "C:/py/python.exe")
         assert w.startswith("@echo off\r\n") and '"%PY%" "%L%" %*' in w and MARK in w
 

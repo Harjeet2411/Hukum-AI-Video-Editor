@@ -9,7 +9,7 @@ never decides anything itself.
 Ask the user only through AskUserQuestion: the window shows it as a card on the open page. A question typed in your
 reply never reaches the page; the Stop hook (toolhook.py) can only put "Claude needs you in the Terminal" on it.
 
-The `nextwork-editor` command (`setup.py install-launcher`) starts Claude Code in the library with the
+The `hukum` command (`setup.py install-launcher`) starts Claude Code in the library with the
 prompt "/ai-editor:start open the home page". When the page is already served it reopens it, and when no
 Claude is listening it also opens a new Terminal window with a listening Claude (`--window-only` skips
 that). Inside Claude Code, `/ai-editor:start` and "open the home page" do the same.
@@ -341,8 +341,8 @@ The user pressed Start setup on the first-run Home. Run `setup.py install-all --
 
 ### Update (no job for Claude)
 
-The window runs Update itself, as job `update` owned by `home`: `update.py market` updates the nextwork
-marketplace, then `ai-editor@nextwork` and `creator-teardown@nextwork`, and the window server restarts from the new
+The window runs Update itself, as job `update` owned by `home`: `update.py market` updates the hukum
+marketplace, then `ai-editor@hukum` and `creator-teardown@hukum`, and the window server restarts from the new
 version's folder on the same port with the same token, so the open tab reloads itself. `wait` never hands it out.
 An open Claude session keeps the version it loaded until the user types `/reload-plugins`; the page says so and
 shows the command until a command from that session runs on the new version.
@@ -356,7 +356,7 @@ leave any other analysis running, and say so in one line.
 
 The user pressed the sidebar's Stop on that job. Stop its running commands (TaskStop), take no next
 step, and say so in one line. A Stop also makes every tool call of the session that held the job fail for two
-minutes with "The user pressed Stop in the cooked. window" (toolhook.py): when a tool call fails with that, stop at
+minutes with "The user pressed Stop in the Hukum window" (toolhook.py): when a tool call fails with that, stop at
 once, say in one line what was left unfinished, and wait for the user to type in the Terminal.
 
 ## Setup from the page

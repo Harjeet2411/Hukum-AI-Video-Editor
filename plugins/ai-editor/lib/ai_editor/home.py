@@ -3004,7 +3004,7 @@ def serve(root=None, port=None, open_browser=True):
     update(drop_modal_runs)
     askhook.register(srv, url, "home", asks_for, asks_dir)
     threading.Thread(target=run_doctor, daemon=True).start()
-    try:   # an update adds a new plugin folder: point nextwork-editor at this one (the installed copy only)
+    try:   # an update adds a new plugin folder: point hukum at this one (the installed copy only)
         import launcher
         if may_refresh(launcher.PLUGIN):
             launcher.refresh()
@@ -3017,7 +3017,7 @@ def serve(root=None, port=None, open_browser=True):
 
 def may_refresh(plugin, home_dir=None, env=None):
     """Only the plugin Claude Code installed (under ~/.claude/plugins/cache, not a git checkout) rewrites the
-    nextwork-editor launcher, and never with a test's own AI_EDITOR_HOME: a worktree or a QA run that serves the
+    hukum launcher, and never with a test's own AI_EDITOR_HOME: a worktree or a QA run that serves the
     page must not point the user's launcher at itself."""
     env = os.environ if env is None else env
     home_dir = Path(home_dir or Path.home())
@@ -3099,8 +3099,8 @@ def demo():
         except urllib.error.HTTPError as e:
             assert e.code == 403, (p, e.code)
     r = urllib.request.urlopen(base + "/?t=" + tok)
-    page = r.read()   # the brand: pan tile, "cooked." and the pan favicon
-    assert b'class="mark"' in page and b"<b>cooked.</b>" in page and b'rel="icon" href="data:image/svg+xml' in page, "brand"
+    page = r.read()   # the brand: spade tile, "Hukum" and the spade favicon
+    assert b'class="mark"' in page and b"<b>Hukum</b>" in page and b'rel="icon" href="data:image/svg+xml' in page, "brand"
     assert "SameSite=Strict" in r.headers["Set-Cookie"]
     # one theme for the window and every review page: saved in $AI_EDITOR_HOME/ui.json, on <html> before first paint
     assert get("/state")["theme"] == "system" and b"<html data-theme" not in urllib.request.urlopen(base + "/?t=" + tok).read()
@@ -3696,7 +3696,7 @@ def demo():
     shutil.rmtree(pd)
     # the launcher is rewritten by the installed plugin only: never a checkout, a git folder or a test's AI_EDITOR_HOME
     hd = tmp / "mr"
-    inst = hd / ".claude" / "plugins" / "cache" / "nextwork" / "ai-editor" / "2.6.12"
+    inst = hd / ".claude" / "plugins" / "cache" / "hukum" / "ai-editor" / "2.6.12"
     inst.mkdir(parents=True)
     assert may_refresh(inst, hd, {}) and may_refresh(inst, hd, {"AI_EDITOR_HOME": str(hd / ".ai-video-editor")})
     assert not may_refresh(inst, hd, {"AI_EDITOR_HOME": str(tmp)}) and not may_refresh(Path(__file__).resolve().parents[2], hd, {})

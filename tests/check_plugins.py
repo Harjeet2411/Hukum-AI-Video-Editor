@@ -31,7 +31,7 @@ EVALS = [("plugins/ai-editor/evals/setup-window-first", "home.py serve"),
          ("plugins/ai-editor/evals/move-card-off-caption", "edit.py patch"),
          ("plugins/ai-editor/evals/paste-website-link", "product-video"),
          ("plugins/ai-editor/evals/paste-tiktok-profile", "creator-teardown"),
-         ("plugins/ai-editor/evals/repo-no-plugin", "ai-editor@nextwork"),
+         ("plugins/ai-editor/evals/repo-no-plugin", "ai-editor@hukum"),
          ("plugins/ai-editor/evals/logo-pack-named-tools", "logo-pack"),
          ("plugins/ai-editor/evals/skill-improver-teach", "skill-improver"),
          ("plugins/ai-editor/evals/skill-maker-new", "skill-maker"),
@@ -202,8 +202,8 @@ def main():
         if proj.get("enabledPlugins", {}).get(f"{entry['name']}@{market.get('name')}") is not True:
             errors.append(f".claude/settings.json: enabledPlugins does not turn on {entry['name']}@{market.get('name')}")
     readme = (ROOT / "README.md").read_text(encoding="utf-8")
-    for path in ("Way 1: open this folder in Claude Code", "/plugin marketplace add nextwork-projects/ai-video-editor-cooked",
-                 "npx skills add nextwork-projects/ai-video-editor-cooked"):
+    for path in ("Way 1: open this folder in Claude Code", "/plugin marketplace add Harjeet2411/Hukum-AI-Video-Editor",
+                 "npx skills add Harjeet2411/Hukum-AI-Video-Editor"):
         if path not in readme:
             errors.append(f"README.md: lost the start path {path!r}")
     case = (ROOT / "plugins/ai-editor/evals/repo-no-plugin/prompt.md").read_text(encoding="utf-8")

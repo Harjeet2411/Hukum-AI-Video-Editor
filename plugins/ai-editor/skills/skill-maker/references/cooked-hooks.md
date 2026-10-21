@@ -1,4 +1,4 @@
-# cooked. hooks for a video skill
+# Hukum hooks for a video skill
 
 What a skill made with skill-maker can read and call so it plugs into the editor. `<plugin>` is the ai-editor
 plugin folder (the one holding `lib/` and `skills/`). Run Python with `python3` (`py` on Windows).
@@ -24,7 +24,7 @@ them; they win over the skill's defaults.
 
 ## Run as a style
 
-A style.json with `"skill": "<name>"` makes cooked. run `/<name>` on `edits/<name>/cut.mp4` after the cut is
+A style.json with `"skill": "<name>"` makes Hukum run `/<name>` on `edits/<name>/cut.mp4` after the cut is
 approved (home page: My styles > New style > Use your own skill). The list only shows skills whose name or
 first description sentence says video, edit, reel, clip or footage.
 

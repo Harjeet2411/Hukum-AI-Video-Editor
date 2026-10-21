@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
-"""Start and check a user's own skill (a video-editing skill that plugs into cooked.).
+"""Start and check a user's own skill (a video-editing skill that plugs into Hukum).
 
     python3 skill_maker.py where                  the folder new skills go in
     python3 skill_maker.py new <name>             <folder>/<name>/SKILL.md and evals/evals.json from the template
     python3 skill_maker.py check <skill folder>   what breaks the skill-authoring rules; exit 1 on a FAIL
     python3 skill_maker.py demo                   self-check
 
-Where: the same folder cooked. writes style skills to (styleskill.skills_dir(): AI_EDITOR_SKILLS, else the
+Where: the same folder Hukum writes style skills to (styleskill.skills_dir(): AI_EDITOR_SKILLS, else the
 project's .claude/skills when it has a .claude folder, else ~/.claude/skills), so a skill made here shows up in
 the home page's "Use your own skill" list. Stdlib only.
 """
@@ -101,7 +101,7 @@ def check(folder):
     if "\\" in re.sub(r"```.*?```", "", body, flags=re.S):
         out.append(("WARN", "backslash outside a code block: write paths with forward slashes"))
     if not for_editing(name, desc):
-        out.append(("WARN", "name and description never say video, captions, reel, footage or thumbnail: cooked.'s "
+        out.append(("WARN", "name and description never say video, captions, reel, footage or thumbnail: Hukum's "
                             "\"Use your own skill\" list will not show it"))
     for ref in re.findall(r"\]\(((?:references|scripts)/[^)]+)\)|`((?:references|scripts)/[\w./-]+)`", body):
         ref = ref[0] or ref[1]

@@ -1,6 +1,6 @@
 ---
 name: skill-maker
-description: Helps the user make their own Claude Code skill for editing videos, step by step. Interviews them briefly (what the skill does, an example video, what good looks like), runs the task once without a skill to see what goes wrong, writes three test scenarios, drafts the SKILL.md to the skill-authoring guide (clear name, a description that says what and when, a checklist, a check-and-fix loop, one example), saves it to their skills folder, tests it against the scenarios in a fresh agent, and improves it with them. Skills made here plug into cooked. (the edit folder, the review page, the safe zone) and can run as a style. Use when the user says "make a skill", "create a skill", "turn this into a skill", "help me write a skill" or "build my own editing skill". Not for adding rules to a skill that exists from a video's notes (skill-improver), and not for copying a creator's style from their videos (creator-teardown).
+description: Helps the user make their own Claude Code skill for editing videos, step by step. Interviews them briefly (what the skill does, an example video, what good looks like), runs the task once without a skill to see what goes wrong, writes three test scenarios, drafts the SKILL.md to the skill-authoring guide (clear name, a description that says what and when, a checklist, a check-and-fix loop, one example), saves it to their skills folder, tests it against the scenarios in a fresh agent, and improves it with them. Skills made here plug into Hukum (the edit folder, the review page, the safe zone) and can run as a style. Use when the user says "make a skill", "create a skill", "turn this into a skill", "help me write a skill" or "build my own editing skill". Not for adding rules to a skill that exists from a video's notes (skill-improver), and not for copying a creator's style from their videos (creator-teardown).
 license: MIT
 compatibility: Python 3.9+, standard library only. Runs from the full ai-editor plugin folder (uses its lib/). Testing in a fresh agent needs the Agent tool.
 ---
@@ -65,7 +65,7 @@ render to the review page, the safe zone and how to reuse the editor's renderer.
 
 - `name`: lowercase, digits and hyphens, at most 64, no "claude" or "anthropic", same as the folder.
 - `description`: third person, what it does then "Use when the user says ..." with their own phrases, at most
-  1024 characters. Name video, edit, reel or clip in the first sentence so cooked.'s style list shows it.
+  1024 characters. Name video, edit, reel or clip in the first sentence so Hukum's style list shows it.
 - Body: only what Claude would not know already, a copyable checklist, a check step with the fix (check,
   fix, check again), one real example. Under 500 lines; longer detail in `references/<topic>.md`, linked from
   SKILL.md, one level deep. A step that is the same every time is a script in `scripts/`: write "Run X".
@@ -97,7 +97,7 @@ they all pass and the user is happy, or after three rounds, saying what is left.
 
 ## 8. Hand over
 
-Ask in the question box: `Make it a style (Recommended)` / `Not now`. Make it a style: cooked.'s window,
+Ask in the question box: `Make it a style (Recommended)` / `Not now`. Make it a style: Hukum's window,
 Skills > `/<name>` > Use as a style (or Styles > New style > Use your own skill); every video made with that
 style runs the skill.
 Say in one line that notes on later videos go into the skill with skill-improver.
@@ -113,4 +113,4 @@ marks none) and checks a still with the safe-zone box. Scenarios: a normal video
 ## Files
 
 - `scripts/skill_maker.py`: `where`, `new`, `check`, `demo`.
-- `references/cooked-hooks.md`: what a video skill can read and call in cooked.
+- `references/cooked-hooks.md`: what a video skill can read and call in Hukum

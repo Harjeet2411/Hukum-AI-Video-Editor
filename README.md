@@ -1,8 +1,12 @@
 <img src="docs/logo.svg" width="64" height="64" alt="">
 
-# cooked.
+# Hukum
 
-cooked. edits your talking-head video for you. You give it two things:
+**Hukum** is DeHaNa's own AI video editor, made for our Instagram reels. It is built on
+[cooked.](https://github.com/nextwork-projects/ai-video-editor-cooked) by NextWork (MIT), and pulls in
+their updates with **update the editor** (see [Updating](#updating)).
+
+Hukum edits your talking-head video for you. You give it two things:
 
 1. **Your video.** It cuts out the retakes, false starts and pauses.
 2. **3 to 6 videos edited the same way.** They can come from one creator or from several. It measures
@@ -23,7 +27,7 @@ It also makes:
 
 <!-- TODO(owner): drop a 10-second before/after demo GIF at docs/demo.gif, then replace this comment with: ![Before and after](docs/demo.gif) -->
 
-Built by [NextWork](https://nextwork.ai). Free and open source (MIT). Works on Mac, Windows and Linux.
+Hukum by Harjeet (DeHaNa), built on cooked. by [NextWork](https://nextwork.ai) (MIT). Works on Mac, Windows and Linux.
 
 ## Start here
 
@@ -31,12 +35,12 @@ You need [Claude Code](https://claude.com/claude-code) and a Claude account (a p
 key). Pick one of three ways to get the editor. After that, open it from a terminal every time:
 
 ```
-nextwork-editor
+hukum
 ```
 
 One command opens everything: your editor in the browser, at the same address every time (bookmark it),
 and Claude Code behind it, listening for what you make there. Run it again when the window is already open
-and it opens the window, plus a new Terminal window with Claude if none is listening. `nextwork-editor
+and it opens the window, plus a new Terminal window with Claude if none is listening. `hukum
 --window-only` opens just the window. If the window ever says nobody is listening, press **Connect Claude**:
 it opens Claude in a new Terminal window for you. Inside Claude Code, `/ai-editor:start` or **edit my video**
 does the same. Setup adds the command; `python3 plugins/ai-editor/skills/setup/scripts/setup.py
@@ -70,8 +74,8 @@ Your videos are saved in one folder, wherever you start: `~/Movies/AI Editor` on
 
 - **No git:** at the top of this page click the green **Code** button, then **Download ZIP**. Unzip
   it (double-click on Mac, right-click > **Extract All** on Windows). You get a folder called
-  `ai-video-editor-cooked-main`.
-- **With git:** `git clone https://github.com/nextwork-projects/ai-video-editor-cooked.git`
+  `Hukum-AI-Video-Editor-main`.
+- **With git:** `git clone https://github.com/Harjeet2411/Hukum-AI-Video-Editor.git`
 
 **3. Open Claude Code in that folder.** In the terminal type `cd ` (with a space after it), drag the
 folder onto the terminal window, press Enter. Then type `claude` and press Enter. The first time,
@@ -86,7 +90,7 @@ it asks you to log in.
 The folder's `.claude/settings.json` turns the editor on. If Claude says the editor is not loaded,
 it offers to install it: say yes, then type `/reload-plugins`.
 
-**Fewer Allow prompts.** A Claude Code the editor opens (`nextwork-editor`, **Connect Claude** or "Open a new Claude" on
+**Fewer Allow prompts.** A Claude Code the editor opens (`hukum`, **Connect Claude** or "Open a new Claude" on
 the home page) already allows the editor's own commands and nothing else: its Python and Node scripts,
 `ffmpeg`, `ffprobe` and `npx remotion`. Started Claude Code yourself? Pick "Yes, and don't ask again"
 the first time each is asked, or put the same rules in your library folder's `.claude/settings.local.json`
@@ -101,8 +105,8 @@ the first time each is asked, or put the same rules in your library folder's `.c
 Inside Claude Code, type these two lines (same on every computer):
 
 ```
-/plugin marketplace add nextwork-projects/ai-video-editor-cooked
-/plugin install ai-editor@nextwork
+/plugin marketplace add Harjeet2411/Hukum-AI-Video-Editor
+/plugin install ai-editor@hukum
 ```
 
 If it asks, type `/reload-plugins`. Then say **edit my video**. `creator-teardown` installs with it.
@@ -113,7 +117,7 @@ Your edits land in your library folder (above), wherever you started Claude Code
 In a terminal, on a computer with [Node.js](https://nodejs.org):
 
 ```
-npx skills add nextwork-projects/ai-video-editor-cooked
+npx skills add Harjeet2411/Hukum-AI-Video-Editor
 ```
 
 `AGENTS.md` (and its copy `GEMINI.md`) tells the agent where to start. The skills share code in
@@ -131,8 +135,8 @@ If you want to change the editor's own code:
 1. On GitHub, press **Fork** at the top of this page. You get your own copy.
 2. In Claude Code, install the editor from your copy:
    ```
-   /plugin marketplace add <your-github-name>/ai-video-editor-cooked
-   /plugin install ai-editor@nextwork
+   /plugin marketplace add <your-github-name>/Hukum-AI-Video-Editor
+   /plugin install ai-editor@hukum
    ```
 3. Clone your fork and change anything you like.
 4. When a new version comes out, say **update the editor** (see [Updating](#updating)).
@@ -239,14 +243,14 @@ the trial-reel treatment. Your skills live in your own folder and stay when the 
 ## Updating
 
 If you installed the plugin (Way 2), turn on auto-update once: in Claude Code type `/plugin`, open
-**Marketplaces**, pick **nextwork**, then **Enable auto-update**. Claude Code then downloads new versions in
+**Marketplaces**, pick **hukum**, then **Enable auto-update**. Claude Code then downloads new versions in
 the background and loads them the next time you open it (or after `/reload-plugins`).
 
 To update by hand, type these in Claude Code:
 
 ```
-/plugin marketplace update nextwork
-/plugin update ai-editor@nextwork
+/plugin marketplace update hukum
+/plugin update ai-editor@hukum
 /reload-plugins
 ```
 
@@ -371,7 +375,7 @@ from [Lucide](https://lucide.dev) ([ISC licence](https://lucide.dev/license)).
   corrections users marked "would help everyone" into rules, checks and tests here.
 - What is next: [docs/BACKLOG.md](docs/BACKLOG.md). What changed: [CHANGELOG.md](CHANGELOG.md).
 - In this folder the editor loads from your working copy. To turn it off while you work, set
-  `"ai-editor@nextwork": false` under `enabledPlugins` in `.claude/settings.local.json`.
+  `"ai-editor@hukum": false` under `enabledPlugins` in `.claude/settings.local.json`.
 - Run the checks before a pull request:
   ```
   python3 tests/check_plugins.py

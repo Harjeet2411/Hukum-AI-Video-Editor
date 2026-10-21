@@ -7,10 +7,9 @@ name: weekly
 #               lock needs a refresh. Both failing is GitHub's runners being blocked; a warning only.
 #   python-new: the lock installed on the newest released Python and every demo run on it. Allowed
 #               to fail; the summary says what broke (ctranslate2 and onnxruntime ship wheels late).
+# Hukum: manual only, to keep the private repo's free Actions minutes.
 on:
   workflow_dispatch:
-  schedule:
-    - cron: "0 7 * * 1"
 
 permissions:
   contents: read

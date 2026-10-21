@@ -27,7 +27,7 @@ import sys
 from pathlib import Path
 
 HOME = Path(os.environ.get("AI_EDITOR_HOME", Path.home() / ".ai-video-editor"))
-REPO = "nextwork-projects/ai-video-editor-cooked"
+REPO = "Harjeet2411/Hukum-AI-Video-Editor"
 SAME = 0.6     # rules this similar are the same feedback said again
 
 

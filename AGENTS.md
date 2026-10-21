@@ -1,4 +1,4 @@
-# cooked. skills
+# Hukum skills
 
 **Most people who open this folder want to edit a video.** When the user asks for an edit, drops a
 video, pastes a link, names a creator, or asks how to start: read
@@ -52,9 +52,9 @@ single skill folders.
 
 ## Install
 
-- **Claude Code:** `/plugin marketplace add nextwork-projects/ai-video-editor-cooked`, then
-  `/plugin install ai-editor@nextwork`. See the README.
-- **Any agent with the skills CLI:** `npx skills add nextwork-projects/ai-video-editor-cooked`.
+- **Claude Code:** `/plugin marketplace add Harjeet2411/Hukum-AI-Video-Editor`, then
+  `/plugin install ai-editor@hukum`. See the README.
+- **Any agent with the skills CLI:** `npx skills add Harjeet2411/Hukum-AI-Video-Editor`.
 - **Cursor and Codex:** this repo ships `.cursor-plugin/plugin.json` and `.codex-plugin/plugin.json`,
   both pointing at the same skill folders.
 
@@ -65,7 +65,7 @@ single skill folders.
 - Ask before creating a GitHub repo or spending money on AWS.
 - Work in the library (`python3 plugins/ai-editor/lib/ai_editor/library.py path`, `~/Movies/AI Editor` on a
   Mac), or a project folder the user named: `creator-teardowns/<handle>/` and `edits/<name>/`. The
-  `nextwork-editor` command and "open the home page" open the editor's window (start's `references/home.md`).
+  `hukum` command and "open the home page" open the editor's window (start's `references/home.md`).
 - Self-checks: `python3 tests/check_plugins.py`, plus each script's `demo` (see
   `.github/workflows/check.yml`).
 

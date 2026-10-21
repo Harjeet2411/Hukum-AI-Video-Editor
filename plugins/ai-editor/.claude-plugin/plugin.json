@@ -1,11 +1,11 @@
 {
   "name": "ai-editor",
-  "displayName": "cooked.",
+  "displayName": "Hukum",
   "description": "Edit your own talking-head video in a creator's measured style: retakes and pauses cut, then zooms, captions and cards rendered with Remotion on your laptop or AWS Lambda.",
   "version": "2.7.22",
-  "author": { "name": "NextWork", "url": "https://nextwork.ai" },
-  "homepage": "https://github.com/nextwork-projects/ai-video-editor-cooked",
-  "repository": "https://github.com/nextwork-projects/ai-video-editor-cooked",
+  "author": { "name": "Harjeet (DeHaNa)", "url": "https://github.com/Harjeet2411" },
+  "homepage": "https://github.com/Harjeet2411/Hukum-AI-Video-Editor",
+  "repository": "https://github.com/Harjeet2411/Hukum-AI-Video-Editor",
   "license": "MIT",
   "keywords": ["video", "video-editing", "talking-head", "captions", "jump-cut", "remotion", "short-form", "tiktok", "youtube-shorts"],
   "dependencies": [

@@ -83,7 +83,7 @@ def profile_id():
     """The profile new accounts land in: Zernio's default one, made if the user has none."""
     ps = _req("GET", "/profiles").get("profiles") or []
     p = next((p for p in ps if p.get("isDefault")), ps[0] if ps else None)
-    return p["_id"] if p else _req("POST", "/profiles", {"name": "cooked."})["profile"]["_id"]
+    return p["_id"] if p else _req("POST", "/profiles", {"name": "Hukum"})["profile"]["_id"]
 
 
 def connect_url(platform):

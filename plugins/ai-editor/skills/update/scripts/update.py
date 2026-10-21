@@ -84,9 +84,9 @@ def where(repo):
     return "fork", remotes.get("upstream")
 
 
-SLASH = ("  /plugin marketplace update nextwork\n"
-         "  /plugin update ai-editor@nextwork\n"
-         "  /plugin update creator-teardown@nextwork\n"
+SLASH = ("  /plugin marketplace update hukum\n"
+         "  /plugin update ai-editor@hukum\n"
+         "  /plugin update creator-teardown@hukum\n"
          "  /reload-plugins\n")
 
 
@@ -101,7 +101,7 @@ def dev_copy():
     return any((d / ".git").exists() for d in (root, *root.parents))
 
 
-def installed(plugin="ai-editor", market="nextwork"):
+def installed(plugin="ai-editor", market="hukum"):
     """(version, install folder) Claude Code has for plugin@market, from installed_plugins.json, or (None, None)."""
     try:
         import json
@@ -111,7 +111,7 @@ def installed(plugin="ai-editor", market="nextwork"):
         return None, None
 
 
-def local_market(market="nextwork"):
+def local_market(market="hukum"):
     """The folder a marketplace added from a cloned repo reads (known_marketplaces.json source "directory", which the
     repo's .claude/settings.json sets up), else None. Its new versions come from git, not from Claude Code."""
     try:
@@ -151,8 +151,8 @@ def market():
         if bad:
             print(bad)
             return 1
-    steps = [("Getting the list of new versions", ["plugin", "marketplace", "update", "nextwork"])]
-    steps += [(f"Updating {p}", ["plugin", "update", f"{p}@nextwork"]) for p in PLUGINS
+    steps = [("Getting the list of new versions", ["plugin", "marketplace", "update", "hukum"])]
+    steps += [(f"Updating {p}", ["plugin", "update", f"{p}@hukum"]) for p in PLUGINS
               if p == "ai-editor" or installed(p)[0]]   # creator-teardown only when it is installed
     for text, args in steps:
         print(f"STEP {text}", flush=True)
@@ -161,8 +161,8 @@ def market():
         print(f"claude {' '.join(args)}: {out[0] if out else 'no claude command'}", flush=True)
         if not r or r.returncode:
             print("Could not update from here. Type these in Claude Code:\n" + SLASH)
-            print("FAIL Type /plugin marketplace update nextwork, then /plugin update ai-editor@nextwork and "
-                  "/plugin update creator-teardown@nextwork, then /reload-plugins.")
+            print("FAIL Type /plugin marketplace update hukum, then /plugin update ai-editor@hukum and "
+                  "/plugin update creator-teardown@hukum, then /reload-plugins.")
             return 1
     new, where_ = installed()
     print(f"VERSION {new or old or '?'}")
@@ -222,7 +222,7 @@ def say_where(repo):
               "update: `git pull` here. To change the editor and keep your changes across updates, use a fork:\n"
               "  1. On GitHub, open nextwork-projects/ai-video-editor-cooked and press Fork.\n"
               "  2. In Claude Code: /plugin marketplace add <your-github-name>/ai-video-editor-cooked\n"
-              "     then /plugin install ai-editor@nextwork\n"
+              "     then /plugin install ai-editor@hukum\n"
               "  3. Clone your fork, change what you like, and say \"update the editor\" to pull new versions.")
     else:
         print(f"install: your fork ({repo.as_posix()})")
@@ -315,7 +315,7 @@ def verify(repo):
         return 1
     print("checks ok. Type /reload-plugins in Claude Code.\n"
           "Installed from your fork on GitHub? When you want it there, push this branch to your fork,\n"
-          "then /plugin marketplace update nextwork and /reload-plugins.")
+          "then /plugin marketplace update hukum and /reload-plugins.")
     return 0
 
 
@@ -387,7 +387,7 @@ def demo():
         assert run(fork, "add-upstream").returncode == 0
         assert "upstream: " + up.as_posix() in run(fork, "where").stdout
         # installed from a fork on GitHub, run outside the clone: points at the clone
-        cache = tmp / ".claude/plugins/marketplaces/nextwork"
+        cache = tmp / ".claude/plugins/marketplaces/hukum"
         g(tmp, "clone", "-q", str(fork), str(cache))
         g(cache, "remote", "set-url", "origin", "https://github.com/someone/ai-video-editor.git")
         assert "a fork" in run(plain, "where").stdout
@@ -448,7 +448,7 @@ def demo():
     if dev_copy():
         assert r.returncode == 2 and r.stdout.splitlines()[0] == DEV, r.stdout
     else:
-        assert r.returncode == 1 and "/plugin update ai-editor@nextwork" in r.stdout, r.stdout
+        assert r.returncode == 1 and "/plugin update ai-editor@hukum" in r.stdout, r.stdout
     # a marketplace added from a cloned folder: Update pulls that folder first; one with changes of its own is left alone
     with tempfile.TemporaryDirectory() as tmp:
         tmp = Path(tmp)
@@ -466,7 +466,7 @@ def demo():
         out(tmp / "other", "commit", "-qam", "two")
         out(tmp / "other", "push", "-q", "origin", "HEAD:main")
         (tmp / "cfg" / "plugins").mkdir(parents=True)
-        (tmp / "cfg" / "plugins" / "known_marketplaces.json").write_text(__import__("json").dumps({"nextwork": {"source": {
+        (tmp / "cfg" / "plugins" / "known_marketplaces.json").write_text(__import__("json").dumps({"hukum": {"source": {
             "source": "directory", "path": str(tmp / "clone")}}}), encoding="utf-8")
         keep = os.environ.get("CLAUDE_CONFIG_DIR")
         os.environ["CLAUDE_CONFIG_DIR"] = str(tmp / "cfg")
@@ -486,12 +486,12 @@ def demo():
             return 0
         tmp, import_json = Path(tmp), __import__("json")
         cfg = tmp / "cfg"
-        inst = cfg / "plugins" / "cache" / "nextwork" / "ai-editor" / "1.0.0"
+        inst = cfg / "plugins" / "cache" / "hukum" / "ai-editor" / "1.0.0"
         (inst / "skills" / "update" / "scripts").mkdir(parents=True)
         (inst / "lib").mkdir()
         shutil.copy(__file__, inst / "skills" / "update" / "scripts" / "update.py")
-        rows = lambda v: {"ai-editor@nextwork": [{"version": v, "installPath": str(inst.parent / v)}],
-                          "creator-teardown@nextwork": [{"version": v, "installPath": str(tmp / "ct" / v)}]}
+        rows = lambda v: {"ai-editor@hukum": [{"version": v, "installPath": str(inst.parent / v)}],
+                          "creator-teardown@hukum": [{"version": v, "installPath": str(tmp / "ct" / v)}]}
         (cfg / "plugins" / "installed_plugins.json").write_text(import_json.dumps({"version": 2, "plugins": rows("1.0.0")}), encoding="utf-8")
         bin_ = tmp / "bin"
         bin_.mkdir()
@@ -508,8 +508,8 @@ print('ok')
         r = subprocess.run([sys.executable, str(inst / "skills/update/scripts/update.py"), "market"], capture_output=True, text=True,
                            env={**os.environ, "PATH": f"{bin_}{os.pathsep}{os.environ.get('PATH', '')}", "CLAUDE_CONFIG_DIR": str(cfg)})
         assert r.returncode == 0, r.stdout + r.stderr
-        assert (tmp / "log").read_text(encoding="utf-8").splitlines() == ["plugin marketplace update nextwork", "plugin update ai-editor@nextwork",
-                                                          "plugin update creator-teardown@nextwork"], (tmp / "log").read_text(encoding="utf-8")
+        assert (tmp / "log").read_text(encoding="utf-8").splitlines() == ["plugin marketplace update hukum", "plugin update ai-editor@hukum",
+                                                          "plugin update creator-teardown@hukum"], (tmp / "log").read_text(encoding="utf-8")
         lines = r.stdout.splitlines()
         assert [x for x in lines if x.startswith("STEP")] == ["STEP Getting the list of new versions", "STEP Updating ai-editor",
                                                               "STEP Updating creator-teardown"], lines

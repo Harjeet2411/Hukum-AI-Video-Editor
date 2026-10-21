@@ -109,7 +109,7 @@ def install_fixes(setup, os_name=None):
     With ai-editor: its bootstrap (first install) and repair (drift). Without: this skill's lock."""
     if setup:
         return {"venv": f'{PY} "{setup}" bootstrap',
-                "update": f'claude plugin update ai-editor@nextwork, then {PY} "{setup}" repair',
+                "update": f'claude plugin update ai-editor@hukum, then {PY} "{setup}" repair',
                 "ocr": f'{PY} "{setup}" repair'}
     o = os_name or OS
     # The real folder (AI_EDITOR_HOME moves it), quoted: Git Bash does not expand %USERPROFILE%.
@@ -120,7 +120,7 @@ def install_fixes(setup, os_name=None):
     pin = f'{pip} install --no-deps --require-hashes -r "{LOCK}"'
     tail = "   (needs: sudo apt install -y python3-venv)" if o == "Linux" and linux_pm() == "apt" else ""
     return {"venv": f"{venv} && {pin}{tail}",
-            "update": f"claude plugin update creator-teardown@nextwork, then {pin}",
+            "update": f"claude plugin update creator-teardown@hukum, then {pin}",
             "ocr": pin}
 
 

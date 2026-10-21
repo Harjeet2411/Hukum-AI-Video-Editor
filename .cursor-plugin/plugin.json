@@ -1,12 +1,12 @@
 {
   "$schema": "https://cursor.com/schemas/cursor-plugin/plugin.json",
   "name": "ai-video-editor",
-  "displayName": "cooked.",
+  "displayName": "Hukum",
   "description": "Measure how a short-form creator edits, then cut and edit your own talking-head video in that style: retakes and pauses out, captions, zooms and cards rendered with Remotion.",
   "version": "2.2.0",
-  "author": { "name": "NextWork", "url": "https://nextwork.ai" },
-  "homepage": "https://github.com/nextwork-projects/ai-video-editor-cooked",
-  "repository": "https://github.com/nextwork-projects/ai-video-editor-cooked",
+  "author": { "name": "Harjeet (DeHaNa)", "url": "https://github.com/Harjeet2411" },
+  "homepage": "https://github.com/Harjeet2411/Hukum-AI-Video-Editor",
+  "repository": "https://github.com/Harjeet2411/Hukum-AI-Video-Editor",
   "license": "MIT",
   "keywords": ["video", "video-editing", "captions", "jump-cut", "remotion", "creator", "tiktok", "youtube-shorts"],
   "skills": ["./plugins/ai-editor/skills/", "./plugins/creator-teardown/skills/"]
